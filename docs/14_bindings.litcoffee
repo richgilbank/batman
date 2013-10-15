@@ -496,6 +496,8 @@ Pluralizes the input value based on the patterns specified in `Batman.helpers.in
 
 ## humanize(string) : string
 
+Takes a string and makes it human readable, for example 'an_underscored_string' would become 'An underscored string'.
+
 ## join(value, separator = '') : string
 
 Joins an `array` of values into a single string:
