@@ -403,11 +403,35 @@ Checks if left content (or keypath) is equal to right content:
 
 ## not(value) : boolean
 
+Inverts the truthiness of the input value:
+
+```html
+<span data-hideif="title | equals 'Batman Views' | not"></span>
+```
+
 ## matches(value, string) : boolean
+
+Tests a string against the input value:
+
+```html
+<span data-showif="title | matches 'Bat'"></span>
+```
 
 ## truncate(value, length, end = '...') : string
 
+Limits the length of output to the specified length and appends the specified text if over the limit:
+
+```html
+<span data-bind="page.title | truncate: 45"></span>
+```
+
 ## default(value, defaultValue) : value
+
+Provides a default value if the keypath is falsy:
+
+```html
+<input type="text" data-bind="page.title | default: 'About Us'"></input>
+```
 
 ## prepend(value, string) : string
 
