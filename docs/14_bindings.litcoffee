@@ -395,7 +395,7 @@ Shorthand for the `get` filter.
 
 ## equals(left, right) : boolean
 
-Checks if left content (or keypath) is equal to right content:
+Checks if left content is equal to right content:
 
 ```html
 <span data-showif="title | equals 'Batman Views'"></span>
@@ -435,15 +435,58 @@ Provides a default value if the keypath is falsy:
 
 ## prepend(value, string) : string
 
+Prepends the string to the input value:
+
+```html
+<span data-bind-class="page.tag | prepend: 'ico-'"></span>
+```
+
 ## append(value, string) : string
+
+Appends the string to the input value:
+
+```html
+<span data-bind-class="page.tag | append: '-ico'"></span>
+```
 
 ## replace(value, searchString, replaceString[, flags]) : string
 
+Replaces content in the input value matching the `searchString` with the `replaceString` value:
+
+```html
+<span data-bind="page.title | replace: 'html', 'HTML'"></span>
+```
+
 ## downcase(value) : string
+
+Downcases the input value:
+
+```html
+<span data-bind="page.title | downcase"></span>
+```
 
 ## upcase(value) : string
 
+Upcases the input value:
+
+```html
+<span data-bind="page.title | upcase"></span>
+```
+
 ## pluralize(value, count) : string
+
+Pluralizes the input value based on the patterns specified in `Batman.helpers.inflector` and the count provided:
+
+```coffeescript
+( ->
+  @singular /(analysis)$/i, '$1'
+  @singular /(analy)ses$/i, '$1sis'
+).call(Batman.helpers.inflector)
+```
+
+```html
+<span data-bind="'analysis' | pluralize: page.comments.count"></span>
+```
 
 ## humanize(string) : string
 
