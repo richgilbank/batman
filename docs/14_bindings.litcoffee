@@ -377,7 +377,7 @@ the contents of the `stub` partial will be inserted and rendered in the `<div>` 
 
 # Batman.View Filters
 
-Batman filters are evaluated from left to right, with the output of each filter being injected into the next. This allows you to form filter chains for display purposes. Accessor caching does not apply to filters, they are recomputed for every binding.
+Batman filters are evaluated from left to right, with the output of each filter being injected into the next. This allows you to form filter chains for display purposes. Accessor caching does not apply to filter chains; when any component of the chain changes, the entire chain will be recalculated for each binding in the template.
 
 ## raw(value) : string
 
@@ -392,7 +392,7 @@ The `raw` filter renders the unescaped value.
 Calls the get function on the input value with the specified key. Can be used with `Batman.Accessible` and `Batman.TerminalAccessible`:
 
 ```html
-<span data-bind="accessibleFunction | get: 'item'"></span>
+<span data-bind="accessibleFunction | get 'item'"></span>
 ```
 
 ## value[key] : value
@@ -428,7 +428,7 @@ Tests a string against the input value:
 Limits the length of output to the specified length and appends the specified text if over the limit:
 
 ```html
-<span data-bind="page.title | truncate: 45"></span>
+<span data-bind="page.title | truncate 45"></span>
 ```
 
 ## default(value, defaultValue) : value
@@ -436,7 +436,7 @@ Limits the length of output to the specified length and appends the specified te
 Provides a default value if the keypath is falsy:
 
 ```html
-<input type="text" data-bind="page.title | default: 'About Us'"></input>
+<input type="text" data-bind="page.title | default 'About Us'"></input>
 ```
 
 ## prepend(value, string) : string
@@ -444,7 +444,7 @@ Provides a default value if the keypath is falsy:
 Prepends the string to the input value:
 
 ```html
-<span data-bind-class="page.tag | prepend: 'ico-'"></span>
+<span data-bind-class="page.tag | prepend 'ico-'"></span>
 ```
 
 ## append(value, string) : string
@@ -452,7 +452,7 @@ Prepends the string to the input value:
 Appends the string to the input value:
 
 ```html
-<span data-bind-class="page.tag | append: '-ico'"></span>
+<span data-bind-class="page.tag | append '-ico'"></span>
 ```
 
 ## replace(value, searchString, replaceString[, flags]) : string
@@ -460,7 +460,7 @@ Appends the string to the input value:
 Replaces content in the input value matching the `searchString` with the `replaceString` value:
 
 ```html
-<span data-bind="page.title | replace: 'html', 'HTML'"></span>
+<span data-bind="page.title | replace 'html', 'HTML'"></span>
 ```
 
 ## downcase(value) : string
@@ -491,7 +491,7 @@ Pluralizes the input value based on the patterns specified in `Batman.helpers.in
 ```
 
 ```html
-<span data-bind="'analysis' | pluralize: page.comments.count"></span>
+<span data-bind="'analysis' | pluralize page.comments.count"></span>
 ```
 
 ## humanize(string) : string
@@ -503,7 +503,7 @@ Takes a string and makes it human readable, for example 'an_underscored_string' 
 Joins an `array` of values into a single string:
 
 ```html
-<span data-bind="page.comments | map: 'title' | join: ', '"></span>
+<span data-bind="page.comments | map: 'title' | join ', '"></span>
 ```
 
 ## sort(value) : value
@@ -519,7 +519,7 @@ Sorts an `array` using the default comparison:
 Maps the specified keypath from an `array` of objects:
 
 ```html
-<span data-foreach-author="page.comments | map: 'author'" data-bind="author"><span>
+<span data-foreach-author="page.comments | map 'author'" data-bind="author"><span>
 ```
 
 ## has(iterable, item) : boolean
@@ -541,7 +541,7 @@ Returns the first value from an `array`:
 Allows you to use string interpolation:
 
 ```html
-<span data-bind="'The page title is %{title}%' | interpolate: {'title': 'page.title'}"></span>
+<span data-bind="'The page title is %{title}%' | interpolate {'title': 'page.title'}"></span>
 ```
 
 ## withArguments(function, curriedArguments...) : function
@@ -550,7 +550,7 @@ Calls the specified function with the supplied arguments. The function will be f
 
 ```coffeescript
 class Sample.CloseWindowView extends Batman.View
-  html: '<span data-event-click="closeWindow | withArguments: true"></span>'
+  html: '<span data-event-click="closeWindow | withArguments true"></span>'
 
   closeWindow: (actuallyClose) ->
     window.close() if actuallyClose
@@ -565,7 +565,7 @@ class Sample.CloseWindowView extends Batman.View
 Uses `Batman.Dispatcher` to build a route for a specific model:
 
 ```html
-<span data-bind="page | routeToAction: 'show'"></span>
+<span data-bind="page | routeToAction 'show'"></span>
 ```
 
 ## escape(value) : string
