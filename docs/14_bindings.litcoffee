@@ -377,6 +377,8 @@ the contents of the `stub` partial will be inserted and rendered in the `<div>` 
 
 # Batman.View Filters
 
+Batman filters are evaluated from left to right, with the output of each filter being injected into the next. This allows you to form filter chains for display purposes. Accessor caching does not apply to filters, they are recomputed for every binding.
+
 ## raw(value) : string
 
 The `raw` filter renders the unescaped value.
@@ -392,6 +394,12 @@ The `raw` filter renders the unescaped value.
 Shorthand for the `get` filter.
 
 ## equals(left, right) : boolean
+
+Checks if left content (or keypath) is equal to right content:
+
+```html
+<span data-showif="title | equals 'Batman Views'"></span>
+```
 
 ## not(value) : boolean
 
