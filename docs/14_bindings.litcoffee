@@ -492,7 +492,7 @@ Pluralizes the input value based on the patterns specified in `Batman.helpers.in
 
 ## join(value, separator = '') : string
 
-Joins an array of values into a single string:
+Joins an `array` of values into a single string:
 
 ```html
 <span data-bind="page.comments | map: 'title' | join: ', '"></span>
@@ -516,14 +516,54 @@ Maps the specified keypath from an `array` of objects:
 
 ## has(iterable, item) : boolean
 
+Calls the `iterable`'s `has` function to check for the existence of the specified `item`.
+
 ## first(iterable) : value
+
+Returns the first value from an `array`:
+
+```html
+<span data-context-firstComment="page.comments | first"></span>
+```
 
 ## meta(value, keypath) : value
 
 ## interpolate(string, valuesObject) : string
 
+Allows you to use string interpolation:
+
+```html
+<span data-bind="'The page title is %{title}%' | interpolate: {'title': 'page.title'}"></span>
+```
+
 ## withArguments(function, curriedArguments...) : function
+
+Calls the specified function with the supplied arguments. The function will be found using `lookupKeypath` and evaluated with the arguments specified:
+
+```coffeescript
+class Sample.CloseWindowView extends Batman.View
+  html: '<span data-event-click="closeWindow | withArguments: true"></span>'
+
+  closeWindow: (actuallyClose) ->
+    window.close() if actuallyClose
+```
+
+```html
+<div data-view="CloseWindowView"></div>
+```
 
 ## routeToAction(model, action) : string
 
+Uses `Batman.Dispatcher` to build a route for a specific model:
+
+```html
+<span data-bind="page | routeToAction: 'show'"></span>
+```
+
 ## escape(value) : string
+
+Escapes HTML in the input value:
+
+```html
+<textarea data-bind="page.body_html | escape"></textarea>
+```
