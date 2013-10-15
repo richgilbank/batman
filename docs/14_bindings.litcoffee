@@ -389,6 +389,12 @@ The `raw` filter renders the unescaped value.
 
 ## get(value, key) : value
 
+Calls the get function on the input value with the specified key. Can be used with `Batman.Accessible` and `Batman.TerminalAccessible`:
+
+```html
+<span data-bind="accessibleFunction | get: 'item'"></span>
+```
+
 ## value[key] : value
 
 Shorthand for the `get` filter.
