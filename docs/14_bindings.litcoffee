@@ -492,9 +492,27 @@ Pluralizes the input value based on the patterns specified in `Batman.helpers.in
 
 ## join(value, separator = '') : string
 
+Joins an array of values into a single string:
+
+```html
+<span data-bind="page.comments | map: 'title' | join: ', '"></span>
+```
+
 ## sort(value) : value
 
+Sorts an `array` using the default comparison:
+
+```html
+<span data-foreach-comment="page.comments | sort" data-bind="comment.title"><span>
+```
+
 ## map(iterable) : value
+
+Maps the specified keypath from an `array` of objects:
+
+```html
+<span data-foreach-author="page.comments | map: 'author'" data-bind="author"><span>
+```
 
 ## has(iterable, item) : boolean
 
