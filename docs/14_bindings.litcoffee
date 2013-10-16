@@ -542,6 +542,8 @@ Maps the specified keypath from an `array` of objects:
 
 Calls the `iterable`'s `has` function to check for the existence of the specified `item`.
 
+```coffeescript
+
 ## first(iterable) : value
 
 Returns the first value from an `array`:
@@ -562,7 +564,7 @@ Allows you to use string interpolation:
 
 ## withArguments(function, curriedArguments...) : function
 
-Calls the specified function with the supplied arguments. The function will be found using `lookupKeypath` and evaluated with the arguments specified:
+Ensures that the function is called with the supplied arguments in addition to the arguments it would normally be called with. This is a form of currying. The argument order will be the curried arguments (those passed to withArguments) first, then the regular arguments. In the case of a click event, the regular arguments are node, event, view.
 
 ```coffeescript
 class Sample.CloseWindowView extends Batman.View
@@ -574,14 +576,6 @@ class Sample.CloseWindowView extends Batman.View
 
 ```html
 <div data-view="CloseWindowView"></div>
-```
-
-## routeToAction(model, action) : string
-
-Uses `Batman.Dispatcher` to build a route for a specific model:
-
-```html
-<span data-bind="page | routeToAction 'show'"></span>
 ```
 
 ## escape(value) : string
