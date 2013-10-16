@@ -535,6 +535,18 @@ Maps the specified keypath from an `array` of objects:
 Calls the `iterable`'s `has` function to check for the existence of the specified `item`.
 
 ```coffeescript
+class Sample.FirstController extends Batman.Controller
+  index: ->
+    @set('things', new Batman.Set('thing1', 'thing2'))
+```
+
+```html
+<input type="checkbox" data-bind-checked="things | has 'thing1'"></input>
+```
+If you were to dispatch `first#index`:
+```html
+<input type="checkbox" data-bind-checked="things | has 'thing1'" checked="true"></input>
+```
 
 ## first(iterable) : value
 
