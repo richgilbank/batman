@@ -377,7 +377,7 @@ the contents of the `stub` partial will be inserted and rendered in the `<div>` 
 
 # Batman.View Filters
 
-Batman filters are evaluated from left to right, with the output of each filter being injected into the next. This allows you to form filter chains for display purposes. Accessor caching does not apply to filter chains; when any component of the chain changes, the entire chain will be recalculated for each binding in the template.
+Batman filters are evaluated from left to right, with the output of each filter being injected into the next. This allows you to form filter chains for display purposes. Accessor caching does not apply to filter chains. If any component of the chain changes, the entire chain will be recalculated for each binding in the template.
 
 ## raw(value) : string
 
@@ -446,6 +446,10 @@ Prepends the string to the input value:
 ```html
 <span data-bind-class="page.tag | prepend 'ico-'"></span>
 ```
+If page.tag is 'about' this would result in:
+```html
+<span data-bind-class="page.tag | prepend 'ico'" class="about-ico"></span>
+```
 
 ## append(value, string) : string
 
@@ -453,6 +457,10 @@ Appends the string to the input value:
 
 ```html
 <span data-bind-class="page.tag | append '-ico'"></span>
+```
+If page.tag is 'about' this would result in:
+```html
+<span data-bind-class="page.tag | prepend 'ico'" class="ico-about"></span>
 ```
 
 ## replace(value, searchString, replaceString[, flags]) : string
@@ -498,12 +506,20 @@ Pluralizes the input value based on the patterns specified in `Batman.helpers.in
 
 Takes a string and makes it human readable, for example 'an_underscored_string' would become 'An underscored string'.
 
+```html
+<span data-bind="'about_us_page' | humanize"></span>
+```
+Would result in:
+```html
+<span data-bind="'about_us_page' | humanize">About us page</span>
+```
+
 ## join(value, separator = '') : string
 
 Joins an `array` of values into a single string:
 
 ```html
-<span data-bind="page.comments | map: 'title' | join ', '"></span>
+<span data-bind="page.comments | map 'title' | join ', '"></span>
 ```
 
 ## sort(value) : value
