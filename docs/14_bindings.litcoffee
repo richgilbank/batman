@@ -440,7 +440,7 @@ Prepends the string to the input value:
 ```
 If page.tag is 'about' this would result in:
 ```html
-<span data-bind-class="page.tag | prepend 'ico'" class="about-ico"></span>
+<span data-bind-class="page.tag | prepend 'ico-'" class="ico-about"></span>
 ```
 
 ## append(value, string) : string
@@ -452,7 +452,7 @@ Appends the string to the input value:
 ```
 If page.tag is 'about' this would result in:
 ```html
-<span data-bind-class="page.tag | prepend 'ico'" class="ico-about"></span>
+<span data-bind-class="page.tag | append '-ico'" class="about-ico"></span>
 ```
 
 ## replace(value, searchString, replaceString[, flags]) : string
