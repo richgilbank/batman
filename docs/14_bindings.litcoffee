@@ -412,7 +412,7 @@ Checks if left content is equal to right content:
 Inverts the truthiness of the input value:
 
 ```html
-<span data-hideif="title | equals 'Batman Views' | not"></span>
+<span data-hideif="title | equals 'Batman Views' | not | and action | equals 'show'"></span>
 ```
 
 ## truncate(value, length, end = '...') : string
