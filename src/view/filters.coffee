@@ -39,9 +39,6 @@ Batman.Filters =
   trim: buntUndefined (value, binding) ->
     value.trim()
 
-  matches: buntUndefined (value, searchFor) ->
-    value.indexOf(searchFor) isnt -1
-
   truncate: buntUndefined (value, length, end = "...", binding) ->
     if !binding
       binding = end

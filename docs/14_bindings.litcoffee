@@ -415,14 +415,6 @@ Inverts the truthiness of the input value:
 <span data-hideif="title | equals 'Batman Views' | not"></span>
 ```
 
-## matches(value, string) : boolean
-
-Tests a string against the input value:
-
-```html
-<span data-showif="title | matches 'Bat'"></span>
-```
-
 ## truncate(value, length, end = '...') : string
 
 Limits the length of output to the specified length and appends the specified text if over the limit:
