@@ -420,7 +420,11 @@ Inverts the truthiness of the input value:
 Limits the length of output to the specified length and appends the specified text if over the limit:
 
 ```html
-<span data-bind="page.title | truncate 45"></span>
+<span data-bind="page.title | truncate 5, '…'"></span>
+```
+Would result in:
+```html
+<span data-bind="page.title | truncate 5, '…'">About…</span>
 ```
 
 ## default(value, defaultValue) : value
